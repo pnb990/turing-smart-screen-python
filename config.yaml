@@ -27,14 +27,14 @@ config:
   # - STUB / STATIC  use random/static data instead of real hardware sensors
   # - AUTO           use the best method based on your OS: Windows OS will use LHM, other OS will use Python libraries
   #HW_SENSORS: AUTO
-  HW_SENSORS: PYTHON
+  HW_SENSORS: LHM
 
   # Network interfaces
   # Linux/MacOS interfaces are named "eth0", "wlan0", "wlp1s0", "enp2s0"...
   # For Windows use the interfaces pretty name: "Ethernet 2", "Wi-Fi", ...
   # Leave the fields empty if the card does not exist on your setup
-  ETH: "" # Ethernet Card
-  WLO: "" # Wi-Fi Card
+  ETH: "Ethernet" # Ethernet Card
+  WLO: "Wi-Fi" # Wi-Fi Card
 
 display:
   # Display revision: A or B (for "flagship" version, use B) or SIMU for simulated LCD (image written in screencap.png)

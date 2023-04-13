@@ -131,6 +131,9 @@ dmypy.json
 # PyCharm
 .idea/
 
+# Vim
+/*.sw?
+
 # Git mergetool backup
 *.orig
 

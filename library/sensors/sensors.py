@@ -107,3 +107,19 @@ class Net(ABC):
     def stats(if_name, interval) -> Tuple[
         int, int, int, int]:  # up rate (B/s), uploaded (B), dl rate (B/s), downloaded (B)
         pass
+
+
+class Media(ABC):
+    @staticmethod
+    @abstractmethod
+    def stats(interval) -> dict:
+        """
+            * album_artist
+            * album_title
+            * album_track_count
+            * artist
+            * thumbnail
+            * title
+            * track_number
+        """
+        pass

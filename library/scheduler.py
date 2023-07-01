@@ -145,6 +145,12 @@ def DateStats():
     # logger.debug("Refresh date stats")
     stats.Date.stats()
 
+@async_job("Media_Stats")
+@schedule(timedelta(seconds=config.THEME_DATA['STATS']['MEDIA'].get("INTERVAL", None)).total_seconds())
+def MediaStats():
+    # logger.debug("Refresh date stats")
+    stats.Media.stats()
+
 
 @async_job("Queue_Handler")
 @schedule(timedelta(milliseconds=1).total_seconds())

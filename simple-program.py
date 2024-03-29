@@ -34,9 +34,9 @@ from library.lcd.lcd_simulated import LcdSimulated
 from library.log import logger
 
 # Set your COM port e.g. COM3 for Windows, /dev/ttyACM0 for Linux, etc. or "AUTO" for auto-discovery
-# COM_PORT = "/dev/ttyACM0"
+COM_PORT = "/dev/ttyACM0"
 # COM_PORT = "COM5"
-COM_PORT = "AUTO"
+#COM_PORT = "AUTO"
 
 # Display revision:
 # - A      for Turing 3.5" and UsbPCMonitor 3.5"/5"
@@ -46,7 +46,7 @@ COM_PORT = "AUTO"
 # - SIMU   for 3.5" simulated LCD (image written in screencap.png)
 # - SIMU5  for 5" simulated LCD
 # To identify your smart screen: https://github.com/mathoudebine/turing-smart-screen-python/wiki/Hardware-revisions
-REVISION = "A"
+REVISION = "B"
 
 stop = False
 

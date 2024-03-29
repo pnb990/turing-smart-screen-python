@@ -1,4 +1,4 @@
-# turing-smart-screen-python - a Python system monitor and library for 3.5" USB-C displays like Turing Smart Screen or XuanFang
+# turing-smart-screen-python - a Python system monitor and library for USB-C displays like Turing Smart Screen or XuanFang
 # https://github.com/mathoudebine/turing-smart-screen-python/
 
 # Copyright (C) 2021-2023  Matthieu Houdebine (mathoudebine)
@@ -39,18 +39,30 @@ class Cpu(sensors.Cpu):
         return random.uniform(0, 100), random.uniform(0, 100), random.uniform(0, 100)
 
     @staticmethod
-    def is_temperature_available() -> bool:
-        return True
-
-    @staticmethod
     def temperature() -> float:
         return random.uniform(30, 90)
+
+    @staticmethod
+    def fan_percent() -> float:
+        return random.uniform(0, 100)
 
 
 class Gpu(sensors.Gpu):
     @staticmethod
     def stats() -> Tuple[float, float, float, float]:  # load (%) / used mem (%) / used mem (Mb) / temp (°C)
         return random.uniform(0, 100), random.uniform(0, 100), random.uniform(300, 16000), random.uniform(30, 90)
+
+    @staticmethod
+    def fps() -> int:
+        return random.randint(20, 120)
+
+    @staticmethod
+    def fan_percent() -> float:
+        return random.uniform(0, 100)
+
+    @staticmethod
+    def frequency() -> float:
+        return random.uniform(800, 3400)
 
     @staticmethod
     def is_available() -> bool:

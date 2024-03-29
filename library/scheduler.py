@@ -1,4 +1,4 @@
-# turing-smart-screen-python - a Python system monitor and library for 3.5" USB-C displays like Turing Smart Screen or XuanFang
+# turing-smart-screen-python - a Python system monitor and library for USB-C displays like Turing Smart Screen or XuanFang
 # https://github.com/mathoudebine/turing-smart-screen-python/
 
 # Copyright (C) 2021-2023  Matthieu Houdebine (mathoudebine)
@@ -110,6 +110,14 @@ def CPUTemperature():
     stats.CPU.temperature()
 
 
+@async_job("CPU_FanSpeed")
+@schedule(timedelta(seconds=config.THEME_DATA['STATS']['CPU']['FAN_SPEED'].get("INTERVAL", None)).total_seconds())
+def CPUFanSpeed():
+    """ Refresh the CPU Fan Speed """
+    # logger.debug("Refresh CPU Fan Speed")
+    stats.CPU.fan_speed()
+
+
 @async_job("GPU_Stats")
 @schedule(timedelta(seconds=config.THEME_DATA['STATS']['GPU'].get("INTERVAL", None)).total_seconds())
 def GpuStats():
@@ -150,6 +158,13 @@ def DateStats():
 def MediaStats():
     # logger.debug("Refresh date stats")
     stats.Media.stats()
+
+
+@async_job("Custom_Stats")
+@schedule(timedelta(seconds=config.THEME_DATA['STATS']['CUSTOM'].get("INTERVAL", None)).total_seconds())
+def CustomStats():
+    # print("Refresh custom stats")
+    stats.Custom.stats()
 
 
 @async_job("Queue_Handler")

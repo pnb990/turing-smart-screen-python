@@ -4,7 +4,15 @@
 
 # NOTE: Every HW sensor is hidden in this example, to show a sensor change 'SHOW: False' to 'SHOW: True'
 ---
+# If you indicate @ with your GitHub username, there will be a hyperlink to your GitHub profile in the Config. Wizard
+# Otherwise, you can just indicate any text e.g. author: "Your Name"
+# You can also remove the line if you don't want to be credited
+author: "@your_GitHub_username"
+
 display:
+  # Specify the display size in inch for this theme: 3.5" (default) or 5"
+  DISPLAY_SIZE: 3.5"
+
   # Specify the display orientation for this theme: portrait or landscape (reverse orientation is managed in config.yaml)
   DISPLAY_ORIENTATION: portrait
 
@@ -27,6 +35,7 @@ static_images:
     Y: 0
     WIDTH: 320
     HEIGHT: 480
+
 static_text:
   # Specify what static text we want to show on the display
   # You can create additional records here, the name of the entry must be unique and contain at a minimum the PATH.
@@ -49,6 +58,7 @@ static_text:
    FONT_COLOR: 0, 0, 0
    # BACKGROUND_COLOR: 255, 255, 255
    BACKGROUND_IMAGE: background.png
+
 STATS:
   CPU:
     PERCENTAGE:
@@ -78,6 +88,42 @@ STATS:
         BAR_OUTLINE: False
         # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        HISTORY_SIZE: 10
+        AUTOSCALE: False
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
     FREQUENCY:
       # In seconds. Longer intervals cause this to refresh more slowly.
       # Setting to lower values will display near real time data,
@@ -92,6 +138,54 @@ STATS:
         FONT_SIZE: 13
         FONT_COLOR: 200, 200, 200
         # BACKGROUND_COLOR: 50, 50, 50
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
+        X: 115
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        HISTORY_SIZE: 10
+        AUTOSCALE: False
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
     LOAD:
       # In seconds. Longer intervals cause this to refresh more slowly.
@@ -132,6 +226,9 @@ STATS:
           # BACKGROUND_COLOR: 50, 50, 50
           BACKGROUND_IMAGE: background.png
     TEMPERATURE:
+      # In seconds. Longer intervals cause this to refresh more slowly.
+      # Setting to lower values will display near real time data,
+      # but may cause significant CPU usage or the display not to update properly
       INTERVAL: 5
       TEXT:
         SHOW: False
@@ -142,6 +239,117 @@ STATS:
         FONT_SIZE: 23
         FONT_COLOR: 255, 255, 255
         # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
+        X: 115
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 30
+        MAX_VALUE: 120
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+    FAN_SPEED:
+      # In seconds. Longer intervals cause this to refresh more slowly.
+      # Setting to lower values will display near real time data,
+      # but may cause significant CPU usage or the display not to update properly
+      INTERVAL: 5
+      TEXT:
+        SHOW: False
+        SHOW_UNIT: True
+        X: 154
+        Y: 13
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 23
+        FONT_COLOR: 255, 255, 255
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
+        X: 115
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 3000
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
   GPU:
     # In seconds. Longer intervals cause this to refresh more slowly.
@@ -161,6 +369,27 @@ STATS:
         BAR_OUTLINE: False
         # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 141
+        Y: 275
+        RADIUS: 28
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 110
+        ANGLE_END: 70
+        ANGLE_STEPS: 1
+        ANGLE_SEP: 25
+        CLOCKWISE: True
+        BAR_COLOR: 255, 0, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
       TEXT:
         SHOW: False
         SHOW_UNIT: True
@@ -171,7 +400,22 @@ STATS:
         FONT_COLOR: 255, 255, 255
         # BACKGROUND_COLOR: 132, 154, 165
         BACKGROUND_IMAGE: background.png
-    MEMORY:
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        HISTORY_SIZE: 10
+        AUTOSCALE: False
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+    MEMORY_PERCENT:
       GRAPH:
         SHOW: False
         X: 115
@@ -184,6 +428,53 @@ STATS:
         BAR_OUTLINE: False
         # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 141
+        Y: 275
+        RADIUS: 28
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 110
+        ANGLE_END: 70
+        ANGLE_STEPS: 1
+        ANGLE_SEP: 25
+        CLOCKWISE: True
+        BAR_COLOR: 255, 0, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      TEXT:
+        SHOW: False
+        SHOW_UNIT: True
+        X: 204
+        Y: 195
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 23
+        FONT_COLOR: 255, 255, 255
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        HISTORY_SIZE: 10
+        AUTOSCALE: False
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+    MEMORY_USED:
       TEXT:
         SHOW: False
         SHOW_UNIT: True
@@ -198,12 +489,237 @@ STATS:
       TEXT:
         SHOW: False
         SHOW_UNIT: True
+        X: 154
+        Y: 13
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 23
+        FONT_COLOR: 255, 255, 255
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
         X: 115
-        Y: 231
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 30
+        MAX_VALUE: 120
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+    FPS:
+      TEXT:
+        SHOW: False
+        SHOW_UNIT: True
+        X: 154
+        Y: 13
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 23
+        FONT_COLOR: 255, 255, 255
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
+        X: 115
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 300
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+    FAN_SPEED:
+      TEXT:
+        SHOW: False
+        SHOW_UNIT: True
+        X: 154
+        Y: 13
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 23
+        FONT_COLOR: 255, 255, 255
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
+        X: 115
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 3000
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+    FREQUENCY:
+      TEXT:
+        SHOW: False
+        SHOW_UNIT: True
+        X: 100
+        Y: 87
         FONT: roboto/Roboto-Bold.ttf
         FONT_SIZE: 13
         FONT_COLOR: 200, 200, 200
         # BACKGROUND_COLOR: 50, 50, 50
+        BACKGROUND_IMAGE: background.png
+      GRAPH:
+        SHOW: False
+        X: 115
+        Y: 71
+        WIDTH: 178
+        HEIGHT: 13
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        BAR_COLOR: 255, 0, 0
+        BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 100
+        Y: 110
+        RADIUS: 40
+        WIDTH: 10
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 120
+        ANGLE_END: 60
+        ANGLE_STEPS: 20
+        ANGLE_SEP: 5
+        CLOCKWISE: True
+        BAR_COLOR: 0, 255, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        HISTORY_SIZE: 10
+        AUTOSCALE: False
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
   MEMORY:
     # In seconds. Longer intervals cause this to refresh more slowly.
@@ -223,6 +739,42 @@ STATS:
         BAR_OUTLINE: False
         # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 141
+        Y: 275
+        RADIUS: 28
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 110
+        ANGLE_END: 70
+        ANGLE_STEPS: 1
+        ANGLE_SEP: 25
+        CLOCKWISE: True
+        BAR_COLOR: 255, 0, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 30
+        MAX_VALUE: 120
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
     VIRTUAL:
       GRAPH:
         SHOW: False
@@ -236,6 +788,42 @@ STATS:
         BAR_OUTLINE: False
         # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 141
+        Y: 275
+        RADIUS: 28
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 110
+        ANGLE_END: 70
+        ANGLE_STEPS: 1
+        ANGLE_SEP: 25
+        CLOCKWISE: True
+        BAR_COLOR: 255, 0, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 30
+        MAX_VALUE: 120
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
       USED:
         SHOW: False
         SHOW_UNIT: True
@@ -247,6 +835,16 @@ STATS:
         # BACKGROUND_COLOR: 132, 154, 165
         BACKGROUND_IMAGE: background.png
       FREE:
+        SHOW: FALSE
+        SHOW_UNIT: True
+        X: 182
+        Y: 129
+        FONT: jetbrains-mono/JetBrainsMono-Bold.ttf
+        FONT_SIZE: 23
+        FONT_COLOR: 255, 255, 255
+        # BACKGROUND_COLOR: 132, 154, 165
+        BACKGROUND_IMAGE: background.png
+      TOTAL:
         SHOW: FALSE
         SHOW_UNIT: True
         X: 182
@@ -279,6 +877,42 @@ STATS:
         MAX_VALUE: 100
         BAR_COLOR: 255, 0, 0
         BAR_OUTLINE: False
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      RADIAL:
+        SHOW: False
+        X: 141
+        Y: 275
+        RADIUS: 28
+        WIDTH: 8
+        MIN_VALUE: 0
+        MAX_VALUE: 100
+        ANGLE_START: 110
+        ANGLE_END: 70
+        ANGLE_STEPS: 1
+        ANGLE_SEP: 25
+        CLOCKWISE: True
+        BAR_COLOR: 255, 0, 0
+        SHOW_TEXT: True
+        SHOW_UNIT: True
+        FONT: roboto/Roboto-Bold.ttf
+        FONT_SIZE: 13
+        FONT_COLOR: 200, 200, 200
+        # BACKGROUND_COLOR: 0, 0, 0
+        BACKGROUND_IMAGE: background.png
+      LINE_GRAPH:
+        SHOW: False
+        X: 300
+        Y: 220
+        WIDTH: 133
+        HEIGHT: 70
+        MIN_VALUE: 30
+        MAX_VALUE: 120
+        HISTORY_SIZE: 10
+        AUTOSCALE: True
+        LINE_COLOR: 61, 184, 225
+        AXIS: True
+        AXIS_COLOR: 255, 135, 0
         # BACKGROUND_COLOR: 0, 0, 0
         BACKGROUND_IMAGE: background.png
       TEXT:
@@ -336,6 +970,21 @@ STATS:
           FONT_COLOR: 255, 255, 255
           # BACKGROUND_COLOR: 132, 154, 165
           BACKGROUND_IMAGE: background.png
+        LINE_GRAPH:
+          SHOW: False
+          X: 300
+          Y: 220
+          WIDTH: 133
+          HEIGHT: 70
+          MIN_VALUE: 30
+          MAX_VALUE: 120
+          HISTORY_SIZE: 10
+          AUTOSCALE: True
+          LINE_COLOR: 61, 184, 225
+          AXIS: True
+          AXIS_COLOR: 255, 135, 0
+          # BACKGROUND_COLOR: 0, 0, 0
+          BACKGROUND_IMAGE: background.png
       UPLOADED:
         TEXT:
           SHOW: FALSE
@@ -355,6 +1004,21 @@ STATS:
           FONT_SIZE: 23
           FONT_COLOR: 255, 255, 255
           # BACKGROUND_COLOR: 132, 154, 165
+          BACKGROUND_IMAGE: background.png
+        LINE_GRAPH:
+          SHOW: False
+          X: 300
+          Y: 220
+          WIDTH: 133
+          HEIGHT: 70
+          MIN_VALUE: 30
+          MAX_VALUE: 120
+          HISTORY_SIZE: 10
+          AUTOSCALE: True
+          LINE_COLOR: 61, 184, 225
+          AXIS: True
+          AXIS_COLOR: 255, 135, 0
+          # BACKGROUND_COLOR: 0, 0, 0
           BACKGROUND_IMAGE: background.png
       DOWNLOADED:
         TEXT:
@@ -377,6 +1041,21 @@ STATS:
           FONT_COLOR: 255, 255, 255
           # BACKGROUND_COLOR: 132, 154, 165
           BACKGROUND_IMAGE: background.png
+        LINE_GRAPH:
+          SHOW: False
+          X: 300
+          Y: 220
+          WIDTH: 133
+          HEIGHT: 70
+          MIN_VALUE: 30
+          MAX_VALUE: 120
+          HISTORY_SIZE: 10
+          AUTOSCALE: True
+          LINE_COLOR: 61, 184, 225
+          AXIS: True
+          AXIS_COLOR: 255, 135, 0
+          # BACKGROUND_COLOR: 0, 0, 0
+          BACKGROUND_IMAGE: background.png
       UPLOADED:
         TEXT:
           SHOW: FALSE
@@ -396,6 +1075,21 @@ STATS:
           FONT_SIZE: 23
           FONT_COLOR: 255, 255, 255
           # BACKGROUND_COLOR: 132, 154, 165
+          BACKGROUND_IMAGE: background.png
+        LINE_GRAPH:
+          SHOW: False
+          X: 300
+          Y: 220
+          WIDTH: 133
+          HEIGHT: 70
+          MIN_VALUE: 30
+          MAX_VALUE: 120
+          HISTORY_SIZE: 10
+          AUTOSCALE: True
+          LINE_COLOR: 61, 184, 225
+          AXIS: True
+          AXIS_COLOR: 255, 135, 0
+          # BACKGROUND_COLOR: 0, 0, 0
           BACKGROUND_IMAGE: background.png
       DOWNLOADED:
         TEXT:

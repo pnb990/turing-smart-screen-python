@@ -1,4 +1,4 @@
-# turing-smart-screen-python - a Python system monitor and library for 3.5" USB-C displays like Turing Smart Screen or XuanFang
+# turing-smart-screen-python - a Python system monitor and library for USB-C displays like Turing Smart Screen or XuanFang
 # https://github.com/mathoudebine/turing-smart-screen-python/
 
 # Copyright (C) 2021-2023  Matthieu Houdebine (mathoudebine)
@@ -63,6 +63,18 @@ def load_theme():
             os._exit(0)
 
     copy_default(THEME_DEFAULT, THEME_DATA)
+
+
+def check_theme_compatible(display_size: str):
+    global THEME_DATA
+    # Check if theme is compatible with hardware revision
+    if display_size != THEME_DATA['display'].get("DISPLAY_SIZE", '3.5"'):
+        logger.error("The selected theme " + CONFIG_DATA['config'][
+            'THEME'] + " is not compatible with your display revision " + CONFIG_DATA["display"]["REVISION"])
+        try:
+            sys.exit(0)
+        except:
+            os._exit(0)
 
 
 # Load theme on import

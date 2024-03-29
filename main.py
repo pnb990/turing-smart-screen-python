@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# turing-smart-screen-python - a Python system monitor and library for 3.5" USB-C displays like Turing Smart Screen or XuanFang
+# turing-smart-screen-python - a Python system monitor and library for USB-C displays like Turing Smart Screen or XuanFang
 # https://github.com/mathoudebine/turing-smart-screen-python/
 
 # Copyright (C) 2021-2023  Matthieu Houdebine (mathoudebine)
@@ -26,7 +26,7 @@
 import os
 import sys
 
-MIN_PYTHON = (3, 7)
+MIN_PYTHON = (3, 8)
 if sys.version_info < MIN_PYTHON:
     print("[ERROR] Python %s.%s or later is required." % MIN_PYTHON)
     try:
@@ -34,23 +34,31 @@ if sys.version_info < MIN_PYTHON:
     except:
         os._exit(0)
 
-import atexit
-import locale
-import platform
-import signal
-import subprocess
-import time
-from PIL import Image
-
-if platform.system() == 'Windows':
-    import win32api
-    import win32con
-    import win32gui
-
 try:
-    import pystray
+    import atexit
+    import locale
+    import platform
+    import signal
+    import subprocess
+    import time
+    from PIL import Image
+
+    if platform.system() == 'Windows':
+        import win32api
+        import win32con
+        import win32gui
+
+    try:
+        import pystray
+    except:
+        pass
 except:
-    pass
+    print(
+        "[ERROR] Python dependencies not installed. Please follow start guide: https://github.com/mathoudebine/turing-smart-screen-python/wiki/System-monitor-:-how-to-start")
+    try:
+        sys.exit(0)
+    except:
+        os._exit(0)
 
 from library.log import logger
 import library.scheduler as scheduler
@@ -134,6 +142,9 @@ if __name__ == "__main__":
                 elif wParam == win32con.PBT_APMRESUMEAUTOMATIC:
                     logger.info("Computer is resuming from sleep, display will turn on")
                     display.turn_on()
+                    # Some models have troubles displaying back the previous bitmap after being turned off/on
+                    display.display_static_images()
+                    display.display_static_text()
             else:
                 # For any other events, the program will stop
                 logger.info("Program will now exit")
@@ -189,16 +200,15 @@ if __name__ == "__main__":
     scheduler.CPUPercentage()
     scheduler.CPUFrequency()
     scheduler.CPULoad()
-    if stats.CPU.is_temperature_available():
-        scheduler.CPUTemperature()
-    else:
-        logger.warning("Your CPU temperature is not supported yet")
+    scheduler.CPUTemperature()
+    scheduler.CPUFanSpeed()
     if stats.Gpu.is_available():
         scheduler.GpuStats()
     scheduler.MemoryStats()
     scheduler.DiskStats()
     scheduler.NetStats()
     scheduler.DateStats()
+    scheduler.CustomStats()
     scheduler.QueueHandler()
 
     if tray_icon and platform.system() == "Darwin":  # macOS-specific

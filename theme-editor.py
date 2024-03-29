@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# turing-smart-screen-python - a Python system monitor and library for 3.5" USB-C displays like Turing Smart Screen or XuanFang
+# turing-smart-screen-python - a Python system monitor and library for USB-C displays like Turing Smart Screen or XuanFang
 # https://github.com/mathoudebine/turing-smart-screen-python/
 
 # Copyright (C) 2021-2023  Matthieu Houdebine (mathoudebine)
@@ -27,15 +27,26 @@ import platform
 import subprocess
 import sys
 import time
-import tkinter
 
-MIN_PYTHON = (3, 7)
+MIN_PYTHON = (3, 8)
 if sys.version_info < MIN_PYTHON:
     print("[ERROR] Python %s.%s or later is required." % MIN_PYTHON)
     try:
         sys.exit(0)
     except:
         os._exit(0)
+
+try:
+    import tkinter
+    from PIL import ImageTk
+except:
+    print(
+        "[ERROR] Tkinter dependency not installed. Please follow troubleshooting page: https://github.com/mathoudebine/turing-smart-screen-python/wiki/Troubleshooting#all-os-tkinter-dependency-not-installed")
+    try:
+        sys.exit(0)
+    except:
+        os._exit(0)
+
 
 if len(sys.argv) != 2:
     print("Usage :")
@@ -49,8 +60,6 @@ if len(sys.argv) != 2:
     except:
         os._exit(0)
 
-from PIL import ImageTk
-
 import library.log
 
 library.log.logger.setLevel(logging.NOTSET)  # Disable system monitor logging for the editor
@@ -62,9 +71,16 @@ logger.setLevel(logging.DEBUG)
 # Hardcode specific configuration for theme editor
 from library import config
 
-config.CONFIG_DATA["display"]["REVISION"] = "SIMU"  # For theme editor, always use simulated LCD
 config.CONFIG_DATA["config"]["HW_SENSORS"] = "STATIC"  # For theme editor always use stub data
 config.CONFIG_DATA["config"]["THEME"] = sys.argv[1]  # Theme is given as argument
+
+config.load_theme()
+
+# For theme editor, always use simulated LCD
+if config.THEME_DATA["display"].get("DISPLAY_SIZE", '3.5"') == '5"':
+    config.CONFIG_DATA["display"]["REVISION"] = "SIMU5"
+else:
+    config.CONFIG_DATA["display"]["REVISION"] = "SIMU"
 
 from library.display import display  # Only import display after hardcoded config is set
 
@@ -89,25 +105,13 @@ def refresh_theme():
     stats.CPU.frequency()
     stats.CPU.load()
     stats.CPU.temperature()
+    stats.CPU.fan_speed()
     stats.Gpu.stats()
     stats.Memory.stats()
     stats.Disk.stats()
     stats.Net.stats()
     stats.Date.stats()
-
-
-def get_width(self) -> int:
-    if config.THEME_DATA["display"]["DISPLAY_ORIENTATION"] == 'portrait':
-        return config.CONFIG_DATA["display"]["DISPLAY_WIDTH"]
-    else:
-        return config.CONFIG_DATA["display"]["DISPLAY_HEIGHT"]
-
-
-def get_height(self) -> int:
-    if config.THEME_DATA["display"]["DISPLAY_ORIENTATION"] == 'portrait':
-        return config.CONFIG_DATA["display"]["DISPLAY_HEIGHT"]
-    else:
-        return config.CONFIG_DATA["display"]["DISPLAY_WIDTH"]
+    stats.Custom.stats()
 
 
 if __name__ == "__main__":
@@ -194,9 +198,6 @@ if __name__ == "__main__":
     # Apply system locale to this program
     locale.setlocale(locale.LC_ALL, '')
 
-    # Load theme file and generate first preview
-    refresh_theme()
-
     logger.debug("Starting Theme Editor...")
 
     # Get theme file to edit
@@ -213,6 +214,9 @@ if __name__ == "__main__":
         os.startfile(".\\" + theme_file)
     else:  # linux variants
         subprocess.call(('xdg-open', "./" + theme_file))
+
+    # Load theme file and generate first preview
+    refresh_theme()
 
     # Create preview window
     logger.debug("Opening theme preview window with static data")
@@ -257,7 +261,7 @@ if __name__ == "__main__":
                  "update automatically")
     # Every time the theme file is modified: reload preview
     while True:
-        if os.path.getmtime(theme_file) > last_edit_time:
+        if os.path.exists(theme_file) and os.path.getmtime(theme_file) > last_edit_time:
             logger.debug("The theme file has been updated, the preview window will refresh")
             refresh_theme()
             last_edit_time = os.path.getmtime(theme_file)

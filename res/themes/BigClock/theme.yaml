@@ -1,11 +1,13 @@
 ---
+author: "@RussNelson"
+
 display:
   DISPLAY_ORIENTATION: landscape
   DISPLAY_RGB_LED: 255, 0, 0
 
 static_images:
   BACKGROUND:
-    PATH: blackground-landscape.png
+    PATH: background.png
     X: 0
     Y: 0
     WIDTH: 480

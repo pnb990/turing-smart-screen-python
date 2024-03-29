@@ -261,7 +261,3 @@ STATS:
         FONT_SIZE: 12
         FONT_COLOR: 128, 255, 255
         BACKGROUND_IMAGE: background.png
-  DATE:
-    INTERVAL: 1
-  MEDIA:
-    INTERVAL: 1

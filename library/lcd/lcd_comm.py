@@ -47,6 +47,8 @@ class LcdComm(ABC):
             "./res/fonts/" # for backward compatibility
             ]
 
+    IMG_PATH_LIST = []
+
     def __init__(self, com_port: str = "AUTO", display_width: int = 320, display_height: int = 480,
                  update_queue: queue.Queue = None):
         self.lcd_serial = None
@@ -605,6 +607,27 @@ class LcdComm(ABC):
     # Load image from the filesystem, or get from the cache if it has already been loaded previously
     def open_image(self, bitmap_path: str) -> Image:
         if bitmap_path not in self.image_cache:
-            logger.debug("Bitmap " + bitmap_path + " is now loaded in the cache")
-            self.image_cache[bitmap_path] = Image.open(bitmap_path)
-        return copy.copy(self.image_cache[bitmap_path])
+            if not Path(bitmap_path).is_absolute():
+                for folder in self.IMG_PATH_LIST:
+                    path = Path(folder) / bitmap_path
+                    if path.is_file():
+                        logger.debug("Bitmap %s is now loaded in the cache",
+                                     bitmap_path)
+                        self.image_cache[bitmap_path] = \
+                                Image.open(str(path))
+                        break;
+
+        bitmap = self.image_cache.get(bitmap_path)
+        if bitmap is None:
+            logger.error("Cannot found %s", bitmap_path)
+            logger.info("Image location was %s",
+                        "\n".join(map(lambda x: f" - {x}",
+                                      self.IMG_PATH_LIST)
+                                  )
+                        )
+            try:
+                sys.exit(0)
+            except:
+                os._exit(0)
+
+        return copy.copy(bitmap)

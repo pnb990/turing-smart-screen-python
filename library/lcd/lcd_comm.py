@@ -23,6 +23,7 @@ import queue
 import sys
 import threading
 import time
+from pathlib import Path
 from abc import ABC, abstractmethod
 from enum import IntEnum
 from typing import Tuple, List
@@ -41,6 +42,11 @@ class Orientation(IntEnum):
 
 
 class LcdComm(ABC):
+
+    FONT_PATH_LIST = [
+            "./res/fonts/" # for backward compatibility
+            ]
+
     def __init__(self, com_port: str = "AUTO", display_width: int = 320, display_height: int = 480,
                  update_queue: queue.Queue = None):
         self.lcd_serial = None
@@ -68,6 +74,31 @@ class LcdComm(ABC):
 
         # Create a cache to store opened fonts, to avoid opening and loading from the filesystem every time
         self.font_cache = {}  # { key=(font, size), value=PIL.ImageFont }
+
+    def get_font(self, font, font_size):
+        if (font, font_size) not in self.font_cache:
+            font_path = Path(font)
+            if not font_path.is_absolute():
+                for folder in self.FONT_PATH_LIST:
+                    path = Path(folder) / font_path
+                    if path.is_file():
+                        self.font_cache[(font, font_size)] = \
+                                ImageFont.truetype(str(path), font_size)
+                        break;
+
+        img_font = self.font_cache.get((font, font_size))
+        if img_font is None:
+            logger.error("Cannot found %s", font)
+            logger.info("Font location was %s",
+                        "\n".join(map(lambda x: f" - {x}",
+                                      self.FONT_PATH_LIST)
+                                  )
+                        )
+            try:
+                sys.exit(0)
+            except:
+                os._exit(0)
+        return img_font
 
     def get_width(self) -> int:
         if self.orientation == Orientation.PORTRAIT or self.orientation == Orientation.REVERSE_PORTRAIT:
@@ -245,9 +276,7 @@ class LcdComm(ABC):
             text_image = self.open_image(background_image)
 
         # Get text bounding box
-        if (font, font_size) not in self.font_cache:
-            self.font_cache[(font, font_size)] = ImageFont.truetype("./res/fonts/" + font, font_size)
-        font = self.font_cache[(font, font_size)]
+        font = self.get_font(font, font_size)
         d = ImageDraw.Draw(text_image)
         left, top, right, bottom = d.textbbox((x, y), text, font=font, align=align, anchor=anchor)
 

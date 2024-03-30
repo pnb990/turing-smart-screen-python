@@ -436,13 +436,13 @@ class LcdComm(ABC):
             # Draw Legend
             draw.line([0, 0, 1, 0], fill=axis_color)
             text = f"{int(max_value)}"
-            font = ImageFont.truetype("./res/fonts/" + "roboto/Roboto-Black.ttf", 10)
+            font = self.get_font("roboto/Roboto-Black.ttf", 10)
             left, top, right, bottom = font.getbbox(text)
             draw.text((2, 0 - top), text,
                       font=font, fill=axis_color)
 
             text = f"{int(min_value)}"
-            font = ImageFont.truetype("./res/fonts/" + "roboto/Roboto-Black.ttf", 10)
+            font = self.get_font("roboto/Roboto-Black.ttf", 10)
             left, top, right, bottom = font.getbbox(text)
             draw.text((width - 1 - right, height - 2 - bottom), text,
                       font=font, fill=axis_color)
@@ -594,7 +594,7 @@ class LcdComm(ABC):
         if with_text:
             if text is None:
                 text = f"{int(pct * 100 + .5)}%"
-            font = ImageFont.truetype("./res/fonts/" + font, font_size)
+            font = sef.get_font(font, font_size)
             left, top, right, bottom = font.getbbox(text)
             w, h = right - left, bottom - top
             draw.text((radius - w / 2, radius - top - h / 2), text,

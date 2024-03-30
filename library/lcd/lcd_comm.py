@@ -75,7 +75,7 @@ class LcdComm(ABC):
         # Create a cache to store opened fonts, to avoid opening and loading from the filesystem every time
         self.font_cache = {}  # { key=(font, size), value=PIL.ImageFont }
 
-    def get_font(self, font, font_size):
+    def get_font(self, font: str, font_size: int) -> ImageFont:
         if (font, font_size) not in self.font_cache:
             font_path = Path(font)
             if not font_path.is_absolute():
